@@ -1,22 +1,44 @@
 import React, { useState } from "react";
 
-const ToDoList = () => {
-  const [tasks, setTasks] = useState(
-    ["hoehfe", "dwodoiwbfw", "eubcuiboec", "oheohweohw"] || localStorage
-  );
-  const [newTask, setNewTasks] = useState("");
+const ToDoList = ({ setNewTask, setTasks, tasks, newTask }) => {
   function handleInput(event) {
-    setNewTasks(event.target.value);
+    setNewTask(event.target.value);
   }
 
-  function addTask(event) {}
-  function deleteTask(index) {}
-  function moveTaskUp(index) {}
-  function moveTaskDown(index) {}
+  function addTask() {
+    if (newTask.trim() !== "") {
+      setTasks((tasks) => [...tasks, newTask]);
+      setNewTask("");
+    }
+  }
+  function deleteTask(index) {
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  }
+  function moveTaskUp(index) {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index - 1]] = [
+        updatedTasks[index - 1],
+        updatedTasks[index],
+      ];
+      setTasks(updatedTasks);
+    }
+    setTasks(updatedTasks);
+  }
+  function moveTaskDown(index) {
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] = [
+        updatedTasks[index + 1],
+        updatedTasks[index],
+      ];
+      setTasks(updatedTasks);
+    }
+  }
   return (
     <>
-      <h1 className="text-center">To-Do-List</h1>
-      <div className="parent-container bg-black text-white justify-content-center">
+      <div className=" mx-auto parent-container bg-black text-white justify-content-center">
         <div className="to-do-list">
           <input
             type="text"
@@ -25,42 +47,33 @@ const ToDoList = () => {
             onChange={handleInput}
           />
           <button className="add-button" onClick={addTask}>
-            add
+            <i className="bi bi-plus-lg"></i>
           </button>
         </div>
 
         <ol>
           {tasks.map((task, index) => (
-            <div className="child-container justify-content-between ">
+            <div className="child-container m-3">
               <li key={index}>
-                <div className="">
-                  <div className="">
-                    <span className="">{task}</span>
-
-                    <div className="">
-                      <div className="">
-                        <button
-                          className="delete-button m-1"
-                          onClick={() => deleteTask(index)}
-                        >
-                          delete
-                        </button>
-                        <button
-                          className="move-button m-1"
-                          onClick={() => moveTaskUp(index)}
-                        >
-                          moveUp
-                        </button>
-                        <button
-                          className="move-button m-1"
-                          onClick={() => moveTaskDown(index)}
-                        >
-                          movedown
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <span className="text text-center m-1">{task}</span>
+                <button
+                  className="delete-button m-1"
+                  onClick={() => deleteTask(index)}
+                >
+                  <i className="bi bi-trash3-fill"></i>
+                </button>
+                <button
+                  className="move-button m-1"
+                  onClick={() => moveTaskUp(index)}
+                >
+                  <i className="bi bi-arrow-up"></i>
+                </button>
+                <button
+                  className="move-button m-1"
+                  onClick={() => moveTaskDown(index)}
+                >
+                  <i className="bi bi-arrow-down"></i>
+                </button>
               </li>
             </div>
           ))}
