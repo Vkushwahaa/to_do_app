@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(37, 96, 169);
+}
+.parent-container {
+  padding: 7px;
+  border-color: aliceblue;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+.child-container{
+  padding-left: 5%;
+  border-color: aliceblue;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+.to-do-list{
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
