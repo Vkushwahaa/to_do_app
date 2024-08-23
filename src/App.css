@@ -1,6 +1,10 @@
 body {
   background-color: rgb(37, 96, 169);
 }
+*:not(input) {
+  caret-color: transparent;
+}
+
 .heading {
   font-size: 5rem;
 }
@@ -20,6 +24,8 @@ body {
   border: 2px solid white;
 }
 .to-do-list {
+  caret-color: transparent;
+
   font-family: Arial, sans-serif;
   text-align: center;
 }
@@ -75,6 +81,8 @@ input {
   border-bottom-color: white;
   border-bottom-width: 1px;
   width: 300px;
+  caret-color: aliceblue;
+  height: 30px;
   font-weight: 400;
   color: aliceblue;
 }
@@ -85,7 +93,7 @@ input {
   border-radius: 10px;
   border-color: aliceblue;
   transition: 0.5s;
-  font-size: x-large;
+  font-size: large;
 }
 .add-button:hover {
   background-color: rgb(140, 254, 0);
@@ -95,14 +103,23 @@ input {
 }
 header {
   color: aliceblue;
+  top: 0%;
+  width: 100%;
   background-color: rgb(0, 0, 0);
+  margin-bottom: 1px;
 }
 .footer {
   bottom: 0;
   width: 100%;
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   color: aliceblue;
   background-color: rgb(0, 0, 0);
+}
+.date-footer {
+  margin-right: 2%;
+}
+.name {
+  flex: 1;
 }
